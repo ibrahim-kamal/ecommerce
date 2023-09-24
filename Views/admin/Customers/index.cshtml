@@ -1,0 +1,34 @@
+﻿@model IList< e_commerce.models.Customer>;
+
+@{
+    //Layout = "_Layout";
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Customers";
+}
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">phone</th>
+            <th scope="col">Email</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.id</th>
+                <td>@item.name</td>
+                <td>@item.phone</td>
+                <td>@item.email</td>
+            </tr>
+        }
+        
+    </tbody>
+</table>
+
+
+

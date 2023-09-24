@@ -1,0 +1,90 @@
+﻿@model IList< e_commerce.models.Customer>;
+
+@{
+    //Layout = "_Layout";
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Customers";
+}
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@ViewData["Title"]</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">DataTables</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="customers" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+                                
+@section Scripts {
+    <script>
+        var table ;
+        $(document).ready(function () {
+            table = $('#customers').DataTable({
+                'processing': true,
+                'serverSide': true,
+                'serverMethod': 'post',
+                'ajax': {
+                    'url': '/admin/customers/customerajax',
+                },
+                'createdRow': function (row, data, dataIndex) {
+                    $(row).attr('id', 'customer-' + data.id);
+                },
+                'columns': [
+                    {
+                        data: "id",
+                    },
+                    {
+                        data: 'name',
+                    }
+                    ,
+                    {
+                        data: "email",
+                    },
+                    {
+                        data: "phone",
+                    }
+                ],
+                "order": [[1, "desc"]]
+            });
+        })
+    </script>
+}
+
+
+
