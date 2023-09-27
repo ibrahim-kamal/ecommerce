@@ -2,6 +2,8 @@
 using e_commerce.models;
 using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
+using Azure;
+using e_commerce.Classes;
 
 namespace e_commerce.Controllers.admin
 {
@@ -18,10 +20,11 @@ namespace e_commerce.Controllers.admin
         }
 
         [HttpPost]
-        public void customerajax(IFormCollection collection) {
-            Console.WriteLine(HttpContext.Request.Form["test"]);
-            Console.WriteLine(collection["test"]);
-            //Console.WriteLine(collection.test);
+        public String customerajax(Datatable datatable) {
+            Customers customers = new Customers();
+            Dictionary<String, Object> response = customers.getCustomersAjax(datatable);
+            String json = JsonSerializer.Serialize(response);
+            return json;
         }
 
         public IActionResult index()

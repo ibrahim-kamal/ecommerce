@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using e_commerce.models;
+using Microsoft.Data.SqlClient;
 using System.Data;
 
 namespace e_commerce.helpers
@@ -26,9 +27,10 @@ namespace e_commerce.helpers
         }
 
 
-        public SqlCommand SetCommand(string query,
-        CommandType commandType = CommandType.Text, List<SqlParameter> parameters = null)
+        public List<T> SetCommand<T>(string query,
+        CommandType commandType = CommandType.Text, List<SqlParameter> parameters = null) where T : Imodel, new()
         {
+            List<T> result = new List<T>();
             SqlCommand cmd = new SqlCommand(query, _connection);
             cmd.CommandType = commandType;
             if (parameters != null)
@@ -39,7 +41,18 @@ namespace e_commerce.helpers
                 }
             }
 
-            return cmd;
+            using (SqlDataReader sdr = cmd.ExecuteReader())
+            {
+                while (sdr.Read())
+                {
+
+                    T t = new T();
+                    t.add(sdr);
+                    result.Add(t);
+                }
+            }
+
+            return result;
         }
 
 

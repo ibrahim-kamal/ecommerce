@@ -2,7 +2,7 @@ using e_commerce.helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 //String ConnectionString = builder.Configuration.GetValue<String>("ConnectionStrings.db");
-String ConnectionString = "Data Source=DESKTOP-5A0QPBF;Initial Catalog=ecommerce;Integrated Security=True;TrustServerCertificate=True";
+String ConnectionString = "Data Source=DESKTOP-5A0QPBF;Initial Catalog=ecommerce;Integrated Security=True;TrustServerCertificate=True;MultipleActiveResultSets=true";
 // Add services to the container.
 builder.Services.AddRazorPages();
 Console.WriteLine("ConnectionString => " + ConnectionString);

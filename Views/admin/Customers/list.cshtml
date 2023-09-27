@@ -16,8 +16,13 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Home</a></li>
-                    <li class="breadcrumb-item active">DataTables</li>
+                    <li class="breadcrumb-item active">@ViewData["Title"]</li>
                 </ol>
+            </div>
+            <div class="col-md-12">
+                <a class="float-sm-right" href="/admin/customers/manage/">
+                    <button class="btn btn-primary">Add new</button>
+                </a>
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -39,6 +44,7 @@
                                     <th>Name</th>
                                     <th>Email</th>
                                     <th>Phone</th>
+                                    <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,22 +73,66 @@
                 },
                 'columns': [
                     {
-                        data: "id",
+                        data: "customerId",
                     },
                     {
-                        data: 'name',
+                        data: 'customerName',
                     }
                     ,
                     {
-                        data: "email",
+                        data: "customerEmail",
                     },
                     {
-                        data: "phone",
+                        data: "customerPhone",
+                    },
+                    {
+                        data: "customerId",
+                        render: function (data, type, row, meta) {
+                            var action = '';
+                            action += `<a  href="/admin/customers/manage/` + row.customerId + `"><i class="fas fa-pen"></i></a>`;
+                            action += `<a  href="javascript:del(` + row.customerId + `)"><i class="far fa-trash-alt"></i></a>`;
+                            return action;
+                        }
                     }
                 ],
                 "order": [[1, "desc"]]
             });
         })
+
+        function del(id) {
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/admin/customers/edit/delete',
+                        data: {
+                            id: id
+                        },
+                        method: 'post',
+                        success: function (response) {
+                            Swal.fire(
+                                'Deleted!',
+                                'User Deleted successfully'
+                            );
+                            $('.user-' + id).remove();
+                            table.draw();
+
+                        }
+
+                    })
+                }
+            })
+
+
+        }
     </script>
 }
 
