@@ -35,6 +35,7 @@ namespace e_commerce.helpers
         CommandType commandType = CommandType.Text, List<SqlParameter> parameters = null) where T : Imodel, new()
         {
             List<T> result = new List<T>();
+            Console.WriteLine(query);
             SqlCommand cmd = new SqlCommand(query, _connection);
             cmd.CommandType = commandType;
             if (parameters != null)
@@ -49,7 +50,6 @@ namespace e_commerce.helpers
             {
                 while (sdr.Read())
                 {
-
                     T t = new T();
                     t.add(sdr);
                     result.Add(t);

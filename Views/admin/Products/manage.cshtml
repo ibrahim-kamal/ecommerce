@@ -1,0 +1,89 @@
+﻿@model e_commerce.viewModels.productViewModel;
+
+@{
+    //Layout = "_Layout";
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Create New Product";
+    ViewData["submitBtn"] = "Add";
+}
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@ViewData["Title"]</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <form method="post" enctype="multipart/form-data">
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name</label>
+                                <input type="hidden" value="@Model.ProductId" name="customerId" />
+                                <input type="text" class="form-control" value="@Model.ProductName" name="ProductName" id="ProductName" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Old Price</label>
+                                <input type="number" step="any" class="form-control" value="@Model.ProductOldPrice" name="ProductOldPrice" id="ProductOldPrice" placeholder="0.0">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Price</label>
+                                <input type="number" step="any" class="form-control" value="@Model.ProductPrice" name="ProductPrice" id="ProductPrice" placeholder="0.0">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Description</label>
+                                <textarea class="form-control" rows="3" value="@Model.ProductDescription" name="ProductDescription">@Model.ProductDescription</textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Main Image</label>
+                                <input type="file" step="any" class="form-control" name="ProductImage" id="ProductPrice" placeholder="0.0">
+                            </div>
+                            @if (!String.IsNullOrEmpty(Model.ProductImage))
+                            {
+                                <div class="row">
+                                    <img width="300" src="~/@Model.ProductImage">
+                                </div>
+                            }
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Images</label>
+                                <input type="file" class="form-control" name="images" id="ProductPrice" multiple>
+                            </div>
+
+                            <div class="row">
+                            @foreach(e_commerce.models.Image image in Model.images)
+                            {
+
+                                    <img width="300" style="margin:10px" src="~/@image.imageUrl">
+                            }
+                                
+                                
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="@ViewData["submitBtn"]" />
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+           
+
+
+
+

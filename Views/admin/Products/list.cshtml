@@ -1,0 +1,140 @@
+﻿
+
+@{
+    //Layout = "_Layout";
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Customers";
+}
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@ViewData["Title"]</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">@ViewData["Title"]</li>
+                </ol>
+            </div>
+            <div class="col-md-12">
+                <a class="float-sm-right" href="/admin/Products/manage/">
+                    <button class="btn btn-primary">Add new</button>
+                </a>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <table id="Products" class="table table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Id</th>
+                                    <th>Name</th>
+                                    <th>Old Price</th>
+                                    <th>Price</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+                                
+@section Scripts {
+    <script>
+        var table ;
+        $(document).ready(function () {
+            table = $('#Products').DataTable({
+                'processing': true,
+                'serverSide': true,
+                'serverMethod': 'post',
+                'ajax': {
+                    'url': '/admin/products/productsajax',
+                },
+                'createdRow': function (row, data, dataIndex) {
+                    $(row).attr('id', 'Product-' + data.id);
+                },
+                'columns': [
+                    {
+                        data: "ProductId",
+                    },
+                    {
+                        data: 'ProductName',
+                    }
+                    ,
+                    {
+                        data: "ProductOldPrice",
+                    },
+                    {
+                        data: "ProductPrice",
+                    },
+                    {
+                        data: "ProductId",
+                        render: function (data, type, row, meta) {
+                            var action = '';
+                            action += `<a  href="/admin/Products/manage/` + row.ProductId + `"><i class="fas fa-pen"></i></a>`;
+                            action += `<a  href="javascript:del(` + row.ProductId + `)"><i class="far fa-trash-alt"></i></a>`;
+                            return action;
+                        }
+                    }
+                ],
+                "order": [[1, "desc"]]
+            });
+        })
+
+        function del(id) {
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/admin/Products/delete',
+                        data: {
+                            id: id
+                        },
+                        method: 'post',
+                        success: function (response) {
+                            Swal.fire(
+                                'Deleted!',
+                                'User Deleted successfully'
+                            );
+                            $('.user-' + id).remove();
+                            table.draw();
+
+                        }
+
+                    })
+                }
+            })
+
+
+        }
+    </script>
+}
+
+
+
