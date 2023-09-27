@@ -1,0 +1,61 @@
+﻿@model e_commerce.models.Customer;
+
+@{
+    //Layout = "_Layout";
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Create New Customer";
+    ViewData["submitBtn"] = "Add";
+}
+
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@ViewData["Title"]</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+
+                    <!-- /.card-header -->
+                    <div class="card-body">
+                        <form method="post" >
+
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Name</label>
+                                <input type="hidden" value="@Model.customerId" name="customerId" />
+                                <input type="text" value="@Model.customerName" class="form-control" name="customerName" id="name" placeholder="Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Email</label>
+                                <input type="Email" value="@Model.customerEmail" class="form-control" name="customerEmail" id="email" placeholder="Email">
+                            </div>
+                            <div class="form-group">
+                                <label for="exampleInputPassword1">Phone</label>
+                                <input type="text" class="form-control" value="@Model.customerPhone" name="customerPhone" id="email" placeholder="Phone">
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="@ViewData["submitBtn"]" />
+                            </div>
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+           
+
+
+
+

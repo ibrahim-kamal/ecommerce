@@ -1,4 +1,4 @@
-﻿@model IList< e_commerce.models.Customer>;
+﻿
 
 @{
     //Layout = "_Layout";
@@ -112,7 +112,7 @@
             }).then((result) => {
                 if (result.isConfirmed) {
                     $.ajax({
-                        url: '/admin/customers/edit/delete',
+                        url: '/admin/customers/delete',
                         data: {
                             id: id
                         },

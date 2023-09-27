@@ -1,12 +1,16 @@
 ﻿using e_commerce.models;
 using Microsoft.Data.SqlClient;
 using System.Data;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace e_commerce.helpers
 {
     public class db
     {
-        public static db _db = null; 
+        public static db _db = null;
+
+        public String last_query = "";
+
         private SqlConnection _connection { get; set; }
         private db(String ConnectionString)
         {
@@ -53,6 +57,66 @@ namespace e_commerce.helpers
             }
 
             return result;
+        }
+
+
+        public int insert(string query,
+        CommandType commandType = CommandType.Text, List<SqlParameter> parameters = null) 
+        {
+            SqlCommand cmd = new SqlCommand(query + ";SELECT SCOPE_IDENTITY();", _connection);
+            Console.WriteLine("inserted Query => " + query + ";SELECT SCOPE_IDENTITY();");
+            cmd.CommandType = commandType;
+            if (parameters != null)
+            {
+                foreach (SqlParameter param in parameters)
+                {
+                    cmd.Parameters.Add(param);
+                }
+            }
+
+
+            try
+            {
+                //cmd.ExecuteNonQuery();
+                //return (int)cmd.ExecuteScalar();
+                
+                object returnObj = cmd.ExecuteScalar();
+
+                
+                    
+                return Convert.ToInt32(returnObj);
+            }
+            catch (SqlException e)
+            {
+               return 0;
+            }
+
+        }
+
+        public int update(string query,
+            CommandType commandType = CommandType.Text, List<SqlParameter> parameters = null)
+        {
+            SqlCommand cmd = new SqlCommand(query, _connection);
+            cmd.CommandType = commandType;
+            if (parameters != null)
+            {
+                foreach (SqlParameter param in parameters)
+                {
+                    cmd.Parameters.Add(param);
+                }
+            }
+
+
+            try
+            {
+                cmd.ExecuteNonQuery();
+                return 1;
+            }
+            catch (SqlException e)
+            {
+                return 0;
+            }
+
         }
 
 

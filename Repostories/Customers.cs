@@ -19,22 +19,10 @@ namespace e_commerce.Repostories
         {
             //List<Customer> customers = new List<Customer>();
 
-            //SqlCommand cmd = db._db.SetCommand("select * from customer");
+
             List <Customer> customers = db._db.SetCommand<Customer>("select * from customer");
 
-            //using (SqlDataReader sdr = cmd.ExecuteReader())
-            //{
-            //    while (sdr.Read())
-            //    {
-            //        customers.Add(new Customer
-            //        {
-            //            name = sdr["name"].ToString(),
-            //            phone = sdr["phone"].ToString(),
-            //            email = sdr["email"].ToString(),
-            //            id = Convert.ToInt32(sdr["id"])
-            //        });
-            //    }
-            //}
+
 
             return customers;
         }
@@ -52,22 +40,10 @@ namespace e_commerce.Repostories
             query += " OFFSET "+filters["start"] +" ROWS ";
             query += " FETCH NEXT  "+filters["rowperpage"] +" ROWS ONLY";
             Console.WriteLine("query => " + query);
-            //SqlCommand cmd = db._db.SetCommand(query);
+
             List<Customer> result =  db._db.SetCommand<Customer>(query);
 
-            //using (SqlDataReader sdr = cmd.ExecuteReader())
-            //{
-            //    while (sdr.Read())
-            //    {
-            //        result.Add(new Customer
-            //        {
-            //            name = sdr["name"].ToString(),
-            //            phone = sdr["phone"].ToString(),
-            //            email = sdr["email"].ToString(),
-            //            id = Convert.ToInt32(sdr["id"])
-            //        });
-            //    }
-            //}
+
             return result;
         }
 
@@ -175,6 +151,38 @@ namespace e_commerce.Repostories
 
 
             return response;
+        }
+
+
+
+        public int create(Customer customer) {
+            int id = db._db.insert("insert into customer(customerName , customerPhone , customerEmail) " +
+                "values('" + customer.customerName + "','" + customer.customerPhone + "' , '" + customer.customerEmail + "')");
+            return id;
+        }
+        public int update(Customer customer) {
+            int updated = db._db.update("update customer set " +
+                "customerName = '" + customer.customerName + "' ," +
+                "customerPhone = '" + customer.customerPhone + "' , " +
+                "customerEmail = '" + customer.customerEmail + "'" +
+                "where customerId = " + customer.customerId+
+                "");
+            return updated;
+        }
+
+
+        public void delete(int Id)
+        {
+
+            db._db.update("delete from customer where customerId = " + Id);
+
+            
+        }
+        public Customer getById(int Id) {
+
+            List<Customer> customers = db._db.SetCommand<Customer>("select * from customer where customerId = " + Id);
+
+            return customers[0];
         }
     }
 }

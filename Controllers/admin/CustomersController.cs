@@ -12,10 +12,47 @@ namespace e_commerce.Controllers.admin
 
         public IActionResult list()
         {
-            Customers customers = new Customers();
-            List<Customer> customersList = customers.getCustomers();
 
-            return View("~/Views/admin/Customers/list.cshtml", customersList);
+            return View("~/Views/admin/Customers/list.cshtml");
+
+        }
+        public IActionResult manage(int id = 0)
+        {
+            Customers customers = new Customers();
+            Customer customer = null;
+            if (id != 0)
+            {
+                customer = customers.getById(id);
+            }
+            else
+            {
+                customer = new Customer();
+            }
+            return View("~/Views/admin/Customers/manage.cshtml" , customer);
+
+        }
+        [HttpPost]
+        public ActionResult manage(Customer customer)
+        {
+            Customers customers = new Customers();
+            if (customer.customerId == 0)
+            {
+                customer.customerId = customers.create(customer);
+            }
+            else
+            {
+
+                customer.customerId = customers.update(customer);
+            }
+
+
+            return RedirectToAction(nameof(list));
+        }
+        [HttpPost]
+        public void delete(int id)
+        {
+            Customers customers = new Customers();
+            customers.delete(id);
 
         }
 
