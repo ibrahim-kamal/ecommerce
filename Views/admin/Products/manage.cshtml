@@ -7,7 +7,11 @@
     ViewData["submitBtn"] = "Add";
 }
 
-
+<style>
+    .close-x{
+        cursor:pointer;
+    }
+</style>
 <section class="content-header">
     <div class="container-fluid">
         <div class="row mb-2">
@@ -31,7 +35,7 @@
 
                             <div class="form-group">
                                 <label for="exampleInputEmail1">Name</label>
-                                <input type="hidden" value="@Model.ProductId" name="customerId" />
+                                <input type="hidden" value="@Model.ProductId" name="productId" />
                                 <input type="text" class="form-control" value="@Model.ProductName" name="ProductName" id="ProductName" placeholder="Name">
                             </div>
                             <div class="form-group">
@@ -62,11 +66,20 @@
                             </div>
 
                             <div class="row">
-                            @foreach(e_commerce.models.Image image in Model.images)
-                            {
+                                @if (Model.images != null)
+                                {
+                                    
+                                   @foreach(e_commerce.models.Image image in Model.images)
+                                    {
+                                        <div class="Image image-id-@image.imageId">
+                                            <div class="close">
+                                                <span class="close-x" onclick="del(@image.imageId)">X</span>
+                                            </div>
+                                            <img width="300" style="margin:10px" src="~/@image.imageUrl">
+                                        </div>
 
-                                    <img width="300" style="margin:10px" src="~/@image.imageUrl">
-                            }
+                                    }
+                                }
                                 
                                 
                             </div>
@@ -82,7 +95,41 @@
         </div>
     </div>
 </section>
-           
+
+
+@section Scripts{
+    <script>
+
+        function del(id) {
+
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/admin/Products/deleteImage',
+                        data: {
+                            id: id
+                        },
+                        method: 'post',
+                        success: function (response) {
+                            $('.image-id-'+id).remove();
+                        }
+
+                    })
+                }
+            })
+
+
+        }
+    </script>
+}
 
 
 

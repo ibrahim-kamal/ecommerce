@@ -96,6 +96,7 @@ namespace e_commerce.helpers
         public int update(string query,
             CommandType commandType = CommandType.Text, List<SqlParameter> parameters = null)
         {
+            Console.WriteLine("update => " + query);
             SqlCommand cmd = new SqlCommand(query, _connection);
             cmd.CommandType = commandType;
             if (parameters != null)

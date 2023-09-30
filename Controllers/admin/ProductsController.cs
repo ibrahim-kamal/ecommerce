@@ -44,10 +44,22 @@ namespace e_commerce.Controllers.admin
         {
 
 
+            productViewModel productViewModel = null;
             Products products = new Products();
+            if (product.ProductId != 0) { 
+                Console.WriteLine("  product.ProductId => " + product.ProductId);
+                productViewModel = products.getById(product.ProductId);
+            }
             Images _images = new Images();
             Files files = new Files(this.Environment);
-            product.ProductImage = files.SaveImage(ProductImage, "uploads/products");
+            if (ProductImage !=  null)
+            {
+                product.ProductImage = files.SaveImage(ProductImage, "uploads/products");
+            }
+            else if(product.ProductId != 0)
+            { 
+                product.ProductImage = productViewModel.ProductImage;
+            }
 
             if (product.ProductId == 0)
             {
@@ -78,6 +90,13 @@ namespace e_commerce.Controllers.admin
         {
             Products products = new Products();
             products.delete(id);
+
+        }
+        [HttpPost]
+        public void deleteImage(int id)
+        {
+            Images images = new Images();
+            images.delete(id);
 
         }
 

@@ -149,12 +149,12 @@ namespace e_commerce.Repostories
             return id;
         }
         public int update(Product product) {
-            int updated = db._db.update("update customer set " +
+            int updated = db._db.update("update products set " +
                 "ProductName = '" + product.ProductName+ "' ," +
                 "ProductDescription = '" + product.ProductDescription+ "' , " +
-                "ProductPrice = '" + product.ProductPrice+ "'" +
-                "ProductOldPrice = '" + product.ProductOldPrice+ "'" +
-                "ProductImage = '" + product.ProductImage + "'" +
+                "ProductPrice = '" + product.ProductPrice+ "', " +
+                "ProductOldPrice = '" + product.ProductOldPrice+ "', " +
+                "ProductImage = '" + product.ProductImage + "' " +
                 "where ProductId = " + product.ProductId+
                 "");
             return updated;
