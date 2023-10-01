@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using System.Text.Json;
 using Azure;
 using e_commerce.Classes;
+using e_commerce.Core;
 
 namespace e_commerce.Controllers.admin
 {
-    public class CustomersController : Controller
+    public class CustomersController : AdminController
     {
 
         public IActionResult list()

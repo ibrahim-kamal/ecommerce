@@ -16,6 +16,16 @@ namespace e_commerce.Repostories
     public class Products
     {
 
+        public List<Product> getAll()
+        {
+
+            String query = "select * from products";
+
+            List<Product> result =  db._db.SetCommand<Product>(query);
+
+
+            return result;
+        }
         public List<Product> getAjaxData(String searchQuery ,Dictionary<String , Object> filters, String status = "")
         {
 

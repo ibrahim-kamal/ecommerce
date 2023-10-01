@@ -16,7 +16,18 @@ namespace e_commerce.models
         public double ProductOldPrice { get; set; }
         public String ProductImage { get; set; }
 
+        public Product() { }
 
+
+        public Product(Product product)
+        {
+            ProductId = product.ProductId ;
+            ProductName = product.ProductName ;
+            ProductDescription = product.ProductDescription ;
+            ProductPrice = product.ProductPrice ;
+            ProductOldPrice = product.ProductOldPrice ;
+            ProductImage = product.ProductImage;
+        }
 
         public void add(SqlDataReader sdr) {
             ProductId = Convert.ToInt32(sdr["ProductId"]);

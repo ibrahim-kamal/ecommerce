@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "QkA5EYwHUBL7UUh99AcIyQIg9zsweHkgSn1GBwoWd6g=",
+  "Hash": "E4p7bWVJKUIAUCqL56gZIbtGYYJ/227W0XK+88Y873g=",
   "Source": "e-commerce",
   "BasePath": "_content/e-commerce",
   "Mode": "Default",
@@ -35987,6 +35987,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\uploads\\products\\09f02e0a236c4a64a1fcb94ec5033442Screenshot 2023-09-29 164328.png",
+      "SourceId": "e-commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\",
+      "BasePath": "_content/e-commerce",
+      "RelativePath": "uploads/products/09f02e0a236c4a64a1fcb94ec5033442Screenshot 2023-09-29 164328.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\products\\09f02e0a236c4a64a1fcb94ec5033442Screenshot 2023-09-29 164328.png"
     },
     {
       "Identity": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\uploads\\products\\1894cc20a6854de88c7be7048beeaf67durable__omxi3w443rue_large.jpg",

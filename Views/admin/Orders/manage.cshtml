@@ -1,0 +1,269 @@
+﻿@model e_commerce.viewModels.OrderDetailsViewModel;
+
+@{
+    //Layout = "_Layout";
+    Layout = "_AdminLayout";
+    ViewData["Title"] = "Create New Product";
+    ViewData["submitBtn"] = "Add";
+}
+
+<style>
+    .close-x{
+        cursor:pointer;
+    }
+</style>
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>@ViewData["Title"]</h1>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<section class="content">
+    <div class="container-fluid">
+
+        <form method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card">
+
+                        <!-- /.card-header -->
+                        <div class="card-body">
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Name</label>
+                                    <input type="hidden" value="@Model.order.orderId" name="order.orderId" />
+                                    <select class="form-control" name="order.Fk_customerId">
+                                        <option value="0">Select Customer</option>
+                                        @foreach(e_commerce.models.Customer customer in Model.customers)
+                                        {
+                                            <option value="@customer.customerId">@customer.customerName</option>
+                                        }
+                                    </select>
+
+                                </div>
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Address</label>
+                                    <input type="text" class="form-control" value="@Model.order.address" name="order.address"  >
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Name</label>
+
+                                        <select class="form-control" name="order.orderStatus">
+                                    <option value="Pending">Pending</option>
+                                    <option value="Delivered">Delivered</option>
+                                    <option value="Cancelled">Cancelled</option>
+                                    </select>
+
+                                </div>
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="card">
+                        <div class="card-header">
+                            <h1>Products</h1>
+                        </div>
+                        <div class="card-body">
+                            <div class="Products">
+                                <div class="product row">
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="exampleInputEmail1">Product Name</label>
+                                            <select class="form-control select-product" name="orderDetails[0][FK_productId]">
+                                                <option value="0">Select Product</option>
+                                                @foreach (e_commerce.models.Product product in Model.products)
+                                                {
+                                                    <option data-price="@product.ProductPrice" value="@product.ProductId">@product.ProductName</option>
+                                                }
+                                            </select>
+
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Quantity</label>
+                                            <input type="number" step="1" class="form-control Quantity" name="orderDetails[0][orderDetailsQty]">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Unit Price</label>
+                                            <input type="number" step="any" readonly class="form-control UnitPrice" value="@Model.order.address" name="orderDetails[0][orderDetailsPrice]">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="form-group">
+                                            <label for="exampleInputPassword1">Total Price</label>
+                                            <input type="number" step="any" readonly class="form-control TotalPrice" value="@Model.order.address" name="orderDetails[0][orderDetailsTotal]">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <span class="float-right btn btn-danger removeItem">Remove</span>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div>
+                                <span class="float-right btn btn-primary addItem">+</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 row">
+
+                <div class="col-12 row mb-3">
+                    <div class="col-md-2">SubTotal</div>
+                    <div class="col-md-3">
+                        <input type="number" step="any" readonly class="SubTotal form-control" value="@Model.order.address" name="order.orderSubTotal" >
+                    </div>
+                </div>
+                <div class="col-12 row mb-3">
+
+                    <div class="col-md-2">Vat</div>
+                    <div class="col-md-3">
+                        <input type="number" step="any" readonly class="Vat form-control" value="@Model.order.address" name="order.OrderVat" >
+                    </div>
+                </div>
+                <div class="col-12 row mb-3">
+
+                    <div class="col-md-2">Discount</div>
+                    <div class="col-md-3">
+                        <input type="number" step="any" class="Discount form-control" value="@Model.order.address" name="order.orderDiscount" >
+                    </div>
+                </div>
+                <div class="col-12 row mb-3">
+
+                    <div class="col-md-2">Total</div>
+                    <div class="col-md-3">
+                        <input type="number" step="any" readonly class="Total form-control" value="@Model.order.address" name="order.orderTotal" >
+                    </div>
+                </div>
+            </div>
+            
+
+            <div class="form-group">
+                <input type="submit" class="btn btn-primary" value="@ViewData["submitBtn"]" />
+            </div>
+        </form>
+    </div>
+</section>
+
+
+@section Scripts{
+    <script>
+        var ProductCount = 1;
+        $('body').on('click','.removeItem' , function(e){
+            e.preventDefault();
+            $(this).parents('.product').remove();
+        })
+        $('body').on('click','.addItem' , function(e){
+            e.preventDefault();
+            $('.Products').append(
+            `
+
+                <div class="product row">
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Product Name</label>
+                                <select class="select-product form-control" name="orderDetails[`+ ProductCount + `][FK_productId]">
+                                <option value="0">Select Product</option>
+                                    @foreach (e_commerce.models.Product product in Model.products)
+                                    {
+                                        <option data-price="@product.ProductPrice" value="@product.ProductId">@product.ProductName</option>
+                                    }
+                            </select>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Quantity</label>
+                                    <input type="number" step="1" class="form-control Quantity"  name="orderDetails[`+ ProductCount + `][orderDetailsQty]">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Unit Price</label>
+                                                    <input type="number" step="any" readonly class="form-control UnitPrice" value="@Model.order.address" name="orderDetails[`+ ProductCount + `][orderDetailsPrice]">
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Total Price</label>
+                                    <input type="number" step="any" readonly class="form-control TotalPrice" value="@Model.order.address" name="orderDetails[`+ ProductCount + `][orderDetailsTotal]">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <span class="float-right btn btn-danger removeItem">Remove</span>
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+            `
+            )
+
+            ProductCount++;
+           
+        })
+
+        function calculateTotal() {
+            TotalPrice = 0;
+            
+            for (var i = 0; i < $('.product').length; i++) {
+                var product = $($('.product')[i]);
+                TotalPrice += parseFloat(product.find('.TotalPrice').val());
+            }
+            var Discount  = $('.Discount').val() ;
+            Discount = (Discount != '') ? parseFloat(Discount) : 0;
+
+            var vat = (TotalPrice * 5) / 100;
+            $('.SubTotal').val(TotalPrice);
+            $('.Vat').val(vat);
+            $('.Total').val(vat + TotalPrice - Discount);
+
+
+
+        }
+
+        $('.Discount').on('change', function () {
+            calculateTotal();
+        });
+
+        function calculateTotalPriceForProduct(that){
+
+            var parent = $(that).parents('.product')
+            var UnitPrice = parent.find('.select-product option:selected').data('price')
+            var Qty = parent.find('.Quantity').val()
+            parent.find('.UnitPrice').val(UnitPrice)
+            parent.find('.TotalPrice').val(Qty * UnitPrice)
+        }
+        $('body').on('change', '.select-product', function () {
+            //var UnitPrice = $(this).find('option:selected').data('price')
+            //var parent = $(this).parents('.product')
+            //var Qty = parent.find('.Quantity').val()
+            //parent.find('.UnitPrice').val(UnitPrice)
+            //parent.find('.TotalPrice').val(Qty * UnitPrice)
+            calculateTotalPriceForProduct(this);
+            calculateTotal();
+        });
+        $('body').on('change', '.Quantity', function () {
+            calculateTotalPriceForProduct(this);
+            calculateTotal();
+        });
+
+    </script>
+}
+
+
+
+

@@ -35,10 +35,11 @@ app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
     name: "admin",
-    pattern: "admin/{controller}/{action}/{id?}",
-    defaults: new { controller = "Welcome", action = "Index" });
+    pattern: "{subFolder}/{controller}/{action}/{id?}",
+    defaults: new { subFolder="admin" , controller = "Welcome", action = "Index" });
     endpoints.MapControllers();
 });
+
 
 app.UseAuthorization();
 

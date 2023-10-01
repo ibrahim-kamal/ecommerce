@@ -6,10 +6,11 @@ using e_commerce.Classes;
 using e_commerce.helpers;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 using e_commerce.viewModels;
+using e_commerce.Core;
 
 namespace e_commerce.Controllers.admin
 {
-    public class ProductsController : Controller
+    public class ProductsController : AdminController
     {
 
         private IHostingEnvironment Environment;

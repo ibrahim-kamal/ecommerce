@@ -26,6 +26,17 @@ namespace e_commerce.Repostories
 
             return customers;
         }
+        
+        public List<Customer> getAll()
+        {
+
+
+            List <Customer> customers = db._db.SetCommand<Customer>("select * from customer");
+
+
+
+            return customers;
+        }
     
 
 
@@ -184,5 +195,7 @@ namespace e_commerce.Repostories
 
             return customers[0];
         }
+
+
     }
 }
