@@ -1,10 +1,11 @@
-﻿@model e_commerce.viewModels.OrderDetailsViewModel;
+﻿@using e_commerce.models;
+@model e_commerce.viewModels.OrderDetailsViewModel;
 
 @{
     //Layout = "_Layout";
     Layout = "_AdminLayout";
-    ViewData["Title"] = "Create New Product";
-    ViewData["submitBtn"] = "Add";
+    ViewData["Title"] = Model.order.orderId == 0 ? "Create New Order" : "Edit Order";
+    ViewData["submitBtn"] = (Model.order.orderId == 0 ? "Add" : "Edit");
 }
 
 <style>
@@ -41,8 +42,8 @@
                                         <option value="0">Select Customer</option>
                                         @foreach(e_commerce.models.Customer customer in Model.customers)
                                         {
-                                            <option value="@customer.customerId">@customer.customerName</option>
-                                        }
+                                        <option @((Model.order.Fk_customerId == customer.customerId) ? "selected" : "") value="@customer.customerId"> @customer.customerName</option>
+                                    }
                                     </select>
 
                                 </div>
@@ -54,10 +55,10 @@
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Name</label>
 
-                                        <select class="form-control" name="order.orderStatus">
-                                    <option value="Pending">Pending</option>
-                                    <option value="Delivered">Delivered</option>
-                                    <option value="Cancelled">Cancelled</option>
+                                    <select class="form-control" name="order.orderStatus">
+                                        <option @((Model.order.orderStatus == "Pending") ? "selected" : "") value="Pending">Pending</option>
+                                        <option @((Model.order.orderStatus == "Delivered") ? "selected" : "") value="Delivered">Delivered</option>
+                                        <option @((Model.order.orderStatus == "Cancelled") ? "selected" : "") value="Cancelled">Cancelled</option>
                                     </select>
 
                                 </div>
@@ -72,45 +73,57 @@
                             <h1>Products</h1>
                         </div>
                         <div class="card-body">
-                            <div class="Products">
-                                <div class="product row">
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="exampleInputEmail1">Product Name</label>
-                                            <select class="form-control select-product" name="orderDetails[0][FK_productId]">
-                                                <option value="0">Select Product</option>
-                                                @foreach (e_commerce.models.Product product in Model.products)
-                                                {
-                                                    <option data-price="@product.ProductPrice" value="@product.ProductId">@product.ProductName</option>
-                                                }
-                                            </select>
+                            @{
+                                int i = 0;
+                            }  
+                            @do
+                            {
 
+
+                                <div class="Products">
+                                    <div class="product row">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Product Name</label>
+                                                <select class="form-control select-product" name="orderDetails[@i][FK_productId]">
+                                                    <option value="0">Select Product</option>
+                                                    @foreach (e_commerce.models.Product product in Model.products)
+                                                    {
+                                                        <option @((Model.orderDetails[i].FK_productId == product.ProductId) ? "selected" : "")
+                                                                data-price="@product.ProductPrice" value="@product.ProductId">@product.ProductName</option>
+                                                    }
+                                                </select>
+
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Quantity</label>
-                                            <input type="number" step="1" class="form-control Quantity" name="orderDetails[0][orderDetailsQty]">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Quantity</label>
+                                                <input value="@Model.orderDetails[i].orderDetailsQty"
+                                                    type="number" step="1" class="form-control Quantity" name="orderDetails[@i][orderDetailsQty]">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Unit Price</label>
-                                            <input type="number" step="any" readonly class="form-control UnitPrice" value="@Model.order.address" name="orderDetails[0][orderDetailsPrice]">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Unit Price</label>
+                                                <input value="@Model.orderDetails[i].orderDetailsPrice" type="number" step="any" readonly class="form-control UnitPrice" value="@Model.order.address" name="orderDetails[@i][orderDetailsPrice]">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-3">
-                                        <div class="form-group">
-                                            <label for="exampleInputPassword1">Total Price</label>
-                                            <input type="number" step="any" readonly class="form-control TotalPrice" value="@Model.order.address" name="orderDetails[0][orderDetailsTotal]">
+                                        <div class="col-md-3">
+                                            <div class="form-group">
+                                                <label for="exampleInputPassword1">Total Price</label>
+                                                <input value="@Model.orderDetails[i].orderDetailsTotal"  type="number" step="any" readonly class="form-control TotalPrice" value="@Model.order.address" name="orderDetails[@i][orderDetailsTotal]">
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <span class="float-right btn btn-danger removeItem">Remove</span>
-                                        <div class="clearfix"></div>
+                                        <div class="col-md-12">
+                                            <span class="float-right btn btn-danger removeItem">Remove</span>
+                                            <div class="clearfix"></div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                                i++;
+                            }while( i < Model.orderDetails.Count);
+                            
                             <div>
                                 <span class="float-right btn btn-primary addItem">+</span>
                                 <div class="clearfix"></div>
@@ -125,28 +138,28 @@
                 <div class="col-12 row mb-3">
                     <div class="col-md-2">SubTotal</div>
                     <div class="col-md-3">
-                        <input type="number" step="any" readonly class="SubTotal form-control" value="@Model.order.address" name="order.orderSubTotal" >
+                        <input type="number" step="any" readonly class="SubTotal form-control" value="@Model.order.orderSubTotal" name="order.orderSubTotal" >
                     </div>
                 </div>
                 <div class="col-12 row mb-3">
 
                     <div class="col-md-2">Vat</div>
                     <div class="col-md-3">
-                        <input type="number" step="any" readonly class="Vat form-control" value="@Model.order.address" name="order.OrderVat" >
+                        <input type="number" step="any" readonly class="Vat form-control" value="@Model.order.OrderVat" name="order.OrderVat" >
                     </div>
                 </div>
                 <div class="col-12 row mb-3">
 
                     <div class="col-md-2">Discount</div>
                     <div class="col-md-3">
-                        <input type="number" step="any" class="Discount form-control" value="@Model.order.address" name="order.orderDiscount" >
+                        <input type="number" step="any" class="Discount form-control" value="@Model.order.orderDiscount" name="order.orderDiscount" >
                     </div>
                 </div>
                 <div class="col-12 row mb-3">
 
                     <div class="col-md-2">Total</div>
                     <div class="col-md-3">
-                        <input type="number" step="any" readonly class="Total form-control" value="@Model.order.address" name="order.orderTotal" >
+                        <input type="number" step="any" readonly class="Total form-control" value="@Model.order.orderTotal" name="order.orderTotal">
                     </div>
                 </div>
             </div>

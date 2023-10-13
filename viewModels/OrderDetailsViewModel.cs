@@ -10,6 +10,7 @@ namespace e_commerce.viewModels
         public List<orderDetails> orderDetails { get; set; }
         public List<Product> products { get; set; }
         public List<Customer> customers{ get; set; }
+        public Customer customer{ get; set; }
 
 
     }

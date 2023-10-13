@@ -23,6 +23,9 @@
                 <a class="float-sm-right" href="/admin/orders/manage/">
                     <button class="btn btn-primary">Add new</button>
                 </a>
+                <a class="float-sm-right" href="/admin/orders/export/">
+                    <button class="btn btn-primary">Export</button>
+                </a>
             </div>
         </div>
     </div><!-- /.container-fluid -->
@@ -34,10 +37,9 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <table id="Products" class="table table-bordered table-hover">
+                        <table id="orders" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>Id</th>
@@ -62,7 +64,7 @@
     <script>
         var table ;
         $(document).ready(function () {
-            table = $('#Products').DataTable({
+            table = $('#orders').DataTable({
                 'processing': true,
                 'serverSide': true,
                 'serverMethod': 'post',
@@ -93,7 +95,8 @@
                         data: "order.orderId",
                         render: function (data, type, row, meta) {
                             var action = '';
-                            action += `<a  href="/admin/Products/manage/` + row.order.orderId + `"><i class="fas fa-pen"></i></a>`;
+                            action += `<a  href="/admin/orders/manage/` + row.order.orderId + `"><i class="fas fa-pen"></i></a>`;
+                            action += `<a  href="/admin/orders/pdf/` + row.order.orderId + `"><i class="fas fa-file-pdf"></i></a>`;
                             action += `<a  href="javascript:del(` + row.order.orderId + `)"><i class="far fa-trash-alt"></i></a>`;
                             return action;
                         }

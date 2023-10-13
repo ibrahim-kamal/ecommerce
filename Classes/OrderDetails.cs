@@ -11,7 +11,9 @@ namespace e_commerce.Classes
 
         public void add(SqlDataReader sdr)
         {
+            order = new models.Order();
             order.add(sdr);
+            _orderDetails = new models.orderDetails();
             _orderDetails.add(sdr);
 
         }

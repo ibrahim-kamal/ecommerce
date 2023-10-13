@@ -14,10 +14,11 @@ namespace e_commerce.models
 
 
         public void add(SqlDataReader sdr) {
-
-            imageId = Convert.ToInt32(sdr["imageId"]);
-            Fk_ProductId = Convert.ToInt32(sdr["Fk_ProductId"]);
-            imageUrl = sdr["imageUrl"].ToString();
+            if (DBNull.Value != sdr["imageId"]) {
+                imageId = Convert.ToInt32(sdr["imageId"]);
+                Fk_ProductId = Convert.ToInt32(sdr["Fk_ProductId"]);
+                imageUrl = sdr["imageUrl"].ToString();
+            }
         }
 
     }

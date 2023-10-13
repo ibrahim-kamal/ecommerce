@@ -4,6 +4,6 @@ namespace e_commerce.viewModels
 {
     public class productViewModel : Product
     {
-        public List<Image> images { get; set; }
+        public List<models.Image> images { get; set; }
     }
 }

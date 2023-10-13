@@ -16,6 +16,18 @@ namespace e_commerce.Repostories
     public class Orders
     {
 
+        public List<OrderViewModel> getAll()
+        {
+
+            String query = "" +
+                "select * from orders " +
+                "join Customer on Fk_customerId = customerId";
+
+            List<OrderViewModel> result = db._db.SetCommand<OrderViewModel>(query);
+
+
+            return result;
+        }
         public List<OrderViewModel> getAjaxData(String searchQuery ,Dictionary<String , Object> filters, String status = "")
         {
 
@@ -188,7 +200,9 @@ namespace e_commerce.Repostories
 
 
             order.order = new Order(orders[0].order);
+            Customers customers = new Customers();
             order.orderDetails = new List<orderDetails>();
+            order.customer = customers.getById(orders[0].order.Fk_customerId);
             foreach (var orderDetails in orders)
             {
                 orderDetails details = new orderDetails(orderDetails._orderDetails);

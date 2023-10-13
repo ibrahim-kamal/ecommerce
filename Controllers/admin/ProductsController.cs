@@ -7,6 +7,13 @@ using e_commerce.helpers;
 using IHostingEnvironment = Microsoft.AspNetCore.Hosting.IHostingEnvironment;
 using e_commerce.viewModels;
 using e_commerce.Core;
+using Syncfusion.Pdf.Graphics.Images.Decoder;
+using System.Formats.Asn1;
+using CsvHelper;
+using AutoMapper;
+using System.Collections.Generic;
+using System.Globalization;
+using e_commerce.Excel;
 
 namespace e_commerce.Controllers.admin
 {
@@ -14,6 +21,7 @@ namespace e_commerce.Controllers.admin
     {
 
         private IHostingEnvironment Environment;
+        private readonly IMapper _mapper;
 
         public ProductsController(IHostingEnvironment _environment)
         {
@@ -73,8 +81,8 @@ namespace e_commerce.Controllers.admin
                 products.update(product);
             }
 
-            
-            Image img = new Image();
+
+            e_commerce.models.Image img = new e_commerce.models.Image();
             img.Fk_ProductId = product.ProductId;
             foreach (var image in images)
             {
@@ -110,11 +118,47 @@ namespace e_commerce.Controllers.admin
         }
 
 
-       
+
+        [HttpPost]
+        public ActionResult import(IFormFile sample)
+        {
+
+            Console.WriteLine("sample");
+
+            using (var reader = new StreamReader(sample.OpenReadStream()))
+            using (var csvr = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+
+
+                IEnumerable<ProductExcel> products = csvr.GetRecords<ProductExcel>();
+                foreach (ProductExcel prod in products)
+                {
+                    Products _products = new Products();
+                    Product product = new Product();
+                    product.ProductName = prod.ProductName;
+                    product.ProductPrice = prod.ProductPrice;
+                    product.ProductDescription = prod.ProductDescription;
+                    Files files = new Files(this.Environment);
+                    product.ProductImage = files.SaveImageFromLink(prod.ProductImage, "uploads/products");
+                    _products.create(product);
+
+                }
+
+
+            }
+            return RedirectToAction(nameof(list));
 
 
 
-        
+        }
+
+
+
+
+
+
+
+
 
     }
 }

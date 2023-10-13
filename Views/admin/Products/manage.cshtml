@@ -71,12 +71,17 @@
                                     
                                    @foreach(e_commerce.models.Image image in Model.images)
                                     {
-                                        <div class="Image image-id-@image.imageId">
-                                            <div class="close">
-                                                <span class="close-x" onclick="del(@image.imageId)">X</span>
+                                        Console.WriteLine("image  => /" + image.imageUrl);
+                                        //@if (File.Exists("~/"+image.imageUrl))
+                                        @if (true)
+                                        {
+                                            <div class="Image image-id-@image.imageId">
+                                                <div class="close">
+                                                    <span class="close-x" onclick="del(@image.imageId)">X</span>
+                                                </div>
+                                                <img width="300" style="margin:10px" src="/@image.imageUrl">
                                             </div>
-                                            <img width="300" style="margin:10px" src="~/@image.imageUrl">
-                                        </div>
+                                        }
 
                                     }
                                 }

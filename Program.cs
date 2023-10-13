@@ -1,13 +1,28 @@
+using DinkToPdf.Contracts;
+using DinkToPdf;
 using e_commerce.helpers;
+using Microsoft.Extensions.FileProviders;
+using AutoMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 //String ConnectionString = builder.Configuration.GetValue<String>("ConnectionStrings.db");
 String ConnectionString = "Data Source=DESKTOP-5A0QPBF;Initial Catalog=ecommerce;Integrated Security=True;TrustServerCertificate=True;MultipleActiveResultSets=true";
 // Add services to the container.
 builder.Services.AddRazorPages();
+
+builder.Services.AddSingleton(typeof(IConverter), new SynchronizedConverter(new PdfTools()));
+builder.Services.AddRazorTemplating();
 Console.WriteLine("ConnectionString => " + ConnectionString);
 db.setDb(ConnectionString);
 var app = builder.Build();
+//var env = app.Environment;
+
+//app.UseStaticFiles(new StaticFileOptions
+//{
+//    FileProvider = new PhysicalFileProvider(
+//        Path.Combine(env.ContentRootPath, "Exports")),
+//    RequestPath = "/Files"
+//});
 
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())

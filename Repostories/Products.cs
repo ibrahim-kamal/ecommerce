@@ -194,10 +194,10 @@ namespace e_commerce.Repostories
             product.ProductDescription = products[0].product.ProductDescription;
             product.ProductPrice = products[0].product.ProductPrice;
             product.ProductOldPrice = products[0].product.ProductOldPrice;
-            product.images = new List<Image>();
+            product.images = new List<models.Image>();
             foreach (var productImage in products)
             {
-                Image image = new Image();
+                models.Image image = new models.Image();
                 image.Fk_ProductId = productImage.image.Fk_ProductId;
                 image.imageUrl = productImage.image.imageUrl;
                 image.imageId = productImage.image.imageId;

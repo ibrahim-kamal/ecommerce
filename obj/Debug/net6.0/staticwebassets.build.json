@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "E4p7bWVJKUIAUCqL56gZIbtGYYJ/227W0XK+88Y873g=",
+  "Hash": "8vS2N087JkchiixdjlwY0dJ23z66jlMsa32/GZ3+3bo=",
   "Source": "e-commerce",
   "BasePath": "_content/e-commerce",
   "Mode": "Default",
@@ -36006,6 +36006,57 @@
       "OriginalItemSpec": "wwwroot\\uploads\\products\\09f02e0a236c4a64a1fcb94ec5033442Screenshot 2023-09-29 164328.png"
     },
     {
+      "Identity": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\uploads\\products\\0bb102a014b74062a09b7d74e4f2e80b-original-imagfhu75eupxyft.jpeg",
+      "SourceId": "e-commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\",
+      "BasePath": "_content/e-commerce",
+      "RelativePath": "uploads/products/0bb102a014b74062a09b7d74e4f2e80b-original-imagfhu75eupxyft.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\products\\0bb102a014b74062a09b7d74e4f2e80b-original-imagfhu75eupxyft.jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\uploads\\products\\0c619d84e9144ed08f832dc2aabafa61download (1).jpeg",
+      "SourceId": "e-commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\",
+      "BasePath": "_content/e-commerce",
+      "RelativePath": "uploads/products/0c619d84e9144ed08f832dc2aabafa61download (1).jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\products\\0c619d84e9144ed08f832dc2aabafa61download (1).jpeg"
+    },
+    {
+      "Identity": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\uploads\\products\\0cd6bb4efc88490d86ca81e8735235f2-original-imagfhu75eupxyft.jpeg",
+      "SourceId": "e-commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\",
+      "BasePath": "_content/e-commerce",
+      "RelativePath": "uploads/products/0cd6bb4efc88490d86ca81e8735235f2-original-imagfhu75eupxyft.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\products\\0cd6bb4efc88490d86ca81e8735235f2-original-imagfhu75eupxyft.jpeg"
+    },
+    {
       "Identity": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\uploads\\products\\1894cc20a6854de88c7be7048beeaf67durable__omxi3w443rue_large.jpg",
       "SourceId": "e-commerce",
       "SourceType": "Discovered",
@@ -36021,6 +36072,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\products\\1894cc20a6854de88c7be7048beeaf67durable__omxi3w443rue_large.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\uploads\\products\\1d18a941448e45eaaa94e83554c05e70download (3).jpeg",
+      "SourceId": "e-commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\",
+      "BasePath": "_content/e-commerce",
+      "RelativePath": "uploads/products/1d18a941448e45eaaa94e83554c05e70download (3).jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\products\\1d18a941448e45eaaa94e83554c05e70download (3).jpeg"
     },
     {
       "Identity": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\uploads\\products\\238438066e1446ac8512f0936ed81417lightest__boybgwifuehe_large.jpg",
@@ -36091,6 +36159,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\products\\75c245d4c2b64cffad96abba85aacc0dall_colors__eppfcocn9mky_large.jpg"
     },
     {
+      "Identity": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\uploads\\products\\8058a1cfb3d94015badc45c7ba550e7cdownload (3).jpeg",
+      "SourceId": "e-commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\",
+      "BasePath": "_content/e-commerce",
+      "RelativePath": "uploads/products/8058a1cfb3d94015badc45c7ba550e7cdownload (3).jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\products\\8058a1cfb3d94015badc45c7ba550e7cdownload (3).jpeg"
+    },
+    {
       "Identity": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\uploads\\products\\9a6a6db8c95b47f2962ca0f03a41fb45all_colors__eppfcocn9mky_large.jpg",
       "SourceId": "e-commerce",
       "SourceType": "Discovered",
@@ -36142,6 +36227,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\products\\a01a679cbfbb448a89d04943ef6f2353Apple-iPhone-15-lineup-hero-geo-230912_inline.jpg.large.jpg"
     },
     {
+      "Identity": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\uploads\\products\\d1d981c7be804cd6b5533f5397ed8e2adownload.jpeg",
+      "SourceId": "e-commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\",
+      "BasePath": "_content/e-commerce",
+      "RelativePath": "uploads/products/d1d981c7be804cd6b5533f5397ed8e2adownload.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\products\\d1d981c7be804cd6b5533f5397ed8e2adownload.jpeg"
+    },
+    {
       "Identity": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\uploads\\products\\df4de06729d74c52801a1b9a5449434ddurable__omxi3w443rue_large.jpg",
       "SourceId": "e-commerce",
       "SourceType": "Discovered",
@@ -36159,6 +36261,23 @@
       "OriginalItemSpec": "wwwroot\\uploads\\products\\df4de06729d74c52801a1b9a5449434ddurable__omxi3w443rue_large.jpg"
     },
     {
+      "Identity": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\uploads\\products\\f6fca52f8b554e1c99506e78dddade37download (2).jpeg",
+      "SourceId": "e-commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\",
+      "BasePath": "_content/e-commerce",
+      "RelativePath": "uploads/products/f6fca52f8b554e1c99506e78dddade37download (2).jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\products\\f6fca52f8b554e1c99506e78dddade37download (2).jpeg"
+    },
+    {
       "Identity": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\uploads\\products\\fc31ed9add0b4f4a9beaea638d569c2bApple-iPhone-15-lineup-hero-geo-230912_inline.jpg.large.jpg",
       "SourceId": "e-commerce",
       "SourceType": "Discovered",
@@ -36174,6 +36293,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\uploads\\products\\fc31ed9add0b4f4a9beaea638d569c2bApple-iPhone-15-lineup-hero-geo-230912_inline.jpg.large.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\uploads\\productspxyft.jpeg",
+      "SourceId": "e-commerce",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\ibrahim\\source\\repos\\e-commerce\\wwwroot\\",
+      "BasePath": "_content/e-commerce",
+      "RelativePath": "uploads/productspxyft.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\productspxyft.jpeg"
     }
   ]
 }

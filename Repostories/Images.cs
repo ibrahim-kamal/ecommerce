@@ -16,7 +16,7 @@ namespace e_commerce.Repostories
     {
 
 
-        public int create(Image image) {
+        public int create(models.Image image) {
             int id = db._db.insert("insert into Images" +
                 "(imageUrl , Fk_ProductId ) " +
                 "values" +
